@@ -25,8 +25,9 @@ One lean always-on core (the universal laws) plus on-demand deep-dives for each 
 | Input boundaries, authz, crypto, threat modeling, OWASP Top 10 | `security` |
 | Test strategy, determinism, test doubles, property/load/chaos testing | `testing` |
 | Commits, branching, pull requests, code review, continuous integration | `git-craft` |
+| LLM/AI feature design, prompt engineering, evals, RAG, prompt injection, agents, cost/token management | `ai-engineering` |
 
-The full standard lives in [`AGENTS.md`](AGENTS.md) (the universal laws, agent-neutral) plus the 13 domain files under [`skills/engineering-standards/reference/`](skills/engineering-standards/reference/).
+The full standard lives in [`AGENTS.md`](AGENTS.md) (the universal laws, agent-neutral) plus the 14 domain files under [`skills/engineering-standards/reference/`](skills/engineering-standards/reference/).
 
 ---
 
@@ -100,10 +101,10 @@ engineering-standards-plugin/
 └── skills/
     └── engineering-standards/
         ├── SKILL.md          # Claude Code skill core (laws + auto-routing)
-        └── reference/        # 13 on-demand per-domain deep-dives (shared by all agents)
+        └── reference/        # 14 on-demand per-domain deep-dives (shared by all agents)
 ```
 
-`AGENTS.md` and `skills/engineering-standards/SKILL.md` carry the same universal laws; both route to the same `reference/` files. Keeping the laws in two entry files (one agent-neutral, one Claude-skill) is the small, deliberate cost of supporting every agent — the 13 domain references are shared, never duplicated.
+`AGENTS.md` and `skills/engineering-standards/SKILL.md` carry the same universal laws; both route to the same `reference/` files. Keeping the laws in two entry files (one agent-neutral, one Claude-skill) is the small, deliberate cost of supporting every agent — the 14 domain references are shared, never duplicated.
 
 ---
 

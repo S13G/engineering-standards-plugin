@@ -1,7 +1,7 @@
 {
   "name": "engineering-standards",
   "version": "1.1.0",
-  "description": "A thorough, cross-domain software engineering standard — backend, frontend, mobile, cloud, data, concurrency, systems/kernel, security, and testing — encoding the canon (SOLID, Clean Code, DDIA, A Philosophy of Software Design, 97 Things Every Software Architect Should Know, 12-Factor, OWASP, CAP) as enforceable, language-agnostic rules. Loaded via progressive disclosure: a lean always-on core plus on-demand per-domain reference files.",
+  "description": "A thorough, cross-domain software engineering standard — backend, frontend, mobile, cloud, data, concurrency, systems/kernel, security, testing, and AI/LLM engineering — encoding the canon (SOLID, Clean Code, DDIA, A Philosophy of Software Design, 97 Things Every Software Architect Should Know, 12-Factor, OWASP, CAP) as enforceable, language-agnostic rules. Loaded via progressive disclosure: a lean always-on core plus on-demand per-domain reference files.",
   "author": {
     "name": "S13G"
   },
@@ -14,6 +14,8 @@
     "mobile",
     "security",
     "testing",
-    "best-practices"
+    "best-practices",
+    "ai",
+    "llm"
   ]
 }
