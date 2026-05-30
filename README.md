@@ -61,14 +61,12 @@ Then per agent:
 
 ### Claude Code — install as a plugin (best experience)
 
-Claude Code can load this as a true skill with **progressive disclosure** (it triggers itself on coding tasks and pulls in only the relevant domain file — no manual file copying):
+Claude Code can load this as a true skill with **progressive disclosure** — it triggers itself on coding tasks and pulls in only the relevant domain file (no manual file copying):
 
-```
-/plugin marketplace add S13G/engineering-standards-plugin
+/plugin marketplace add https://github.com/S13G/engineering-standards-plugin
 /plugin install engineering-standards@engineering-standards-marketplace
-```
 
-To make it an always-on default across every workspace, also reference it from your global `~/.claude/CLAUDE.md`.
+> If you've already set up SSH access to GitHub on your machine, the shorthand `S13G/engineering-standards-plugin` also works in place of the full HTTPS URL.To make it an always-on default across every workspace, also reference it from your global `~/.claude/CLAUDE.md`.
 
 ---
 
