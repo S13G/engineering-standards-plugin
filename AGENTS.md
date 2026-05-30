@@ -125,10 +125,10 @@ Before calling *anything* done — your own work or someone else's — answer th
 2. What happens when it fails? Is the failure loud, and handled where it can be handled?
 3. Can it run twice safely? If not, make it idempotent or guard it.
 4. What does it do at 10× the expected load or data size? Is any query or list unbounded?
-5. Is there a shared resource written concurrently? Is it protected (`reference/concurrency.md`, `reference/data.md`)?
+5. Is there a shared resource written concurrently? Is it protected (`skills/engineering-standards/reference/concurrency.md`, `skills/engineering-standards/reference/data.md`)?
 6. Are the invariants enforced where they cannot be bypassed — ideally the database, not just the app?
 7. Does it expose or log anything it shouldn't? Is every action authorized?
-8. Is there a secret, key, or token in this diff? Remove it now.
+8. Is there a secret, key, or token in this diff? Remove it now. (`skills/engineering-standards/reference/security.md`)
 9. Did it follow the existing patterns of this codebase, or invent a second dialect for the same job?
 10. Is the behavior that matters covered by a deterministic test?
 
