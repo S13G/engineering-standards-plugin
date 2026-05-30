@@ -132,4 +132,4 @@ Before calling *anything* done — your own work or someone else's — answer th
 9. Did it follow the existing patterns of this codebase, or invent a second dialect for the same job?
 10. Is the behavior that matters covered by a deterministic test?
 
-> The full standard, including all 13 domain reference files, lives under `skills/engineering-standards/`. Note: when read outside the bundled skill, the reference links above are relative to the repository root (`skills/engineering-standards/reference/…`); inside the skill they resolve as `reference/…`.
+> The full standard, including all 14 domain reference files, lives under `skills/engineering-standards/`. Note: when read outside the bundled skill, the reference links above are relative to the repository root (`skills/engineering-standards/reference/…`); inside the skill they resolve as `reference/…`.
