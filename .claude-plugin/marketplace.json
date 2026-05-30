@@ -1,0 +1,13 @@
+{
+  "name": "engineering-standards-marketplace",
+  "owner": {
+    "name": "S13G"
+  },
+  "plugins": [
+    {
+      "name": "engineering-standards",
+      "source": "./",
+      "description": "Cross-domain software engineering standard skill (backend, frontend, mobile, cloud, data, concurrency, systems, security, testing) using progressive disclosure."
+    }
+  ]
+}
