@@ -1,0 +1,6 @@
+# Code owners for this repository.
+# Every change requests review from these owners before it can be merged into a
+# protected branch (see branch protection: "Require review from Code Owners").
+# The last matching pattern takes precedence.
+
+*       @S13G @saiyanSkai
