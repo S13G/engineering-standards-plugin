@@ -81,7 +81,7 @@ These hold regardless of language, framework, layer, or platform.
 
 - Code is read far more than written. Optimize the reading. Obvious entry points, predictable control flow, small units, helpful names.
 - **Least astonishment**: behave the way the name and the surrounding code promise. Surprises are bugs in waiting.
-- Leave the campsite cleaner (**Boy Scout Rule**) — but in scoped, reviewable steps, never a drive-by rewrite mixed into a feature.
+- Tidy only the code you are writing for this task — keep your own additions clean. Pre-existing code you didn't come to change, you leave as-is; a mess you spot in it you surface, you don't fix (see Law #12). (This narrows the old "Boy Scout Rule": cleanup is part of the task, not a license to edit code you merely passed by.)
 - **Reversibility**: prefer decisions that are cheap to undo. Version APIs and schemas from day one; a version bump is cheaper than a broken client. Spend your deliberation on the one-way doors; move fast on the two-way ones.
 
 ### 8. Everything is a tradeoff — choose deliberately and record why
@@ -115,6 +115,14 @@ These hold regardless of language, framework, layer, or platform.
 - Determinism is non-negotiable: control the clock, randomness, ordering, and I/O. A flaky test trains the team to ignore red. (Strategy: `reference/testing.md`.)
 - The bug you fix gets a test that fails first. That is how you prove the fix and prevent the regression.
 
+### 12. Minimal blast radius — change what the task requires, preserve the rest
+
+- Touch only what the assigned task requires. Before each edit, you should be able to name *which part of the task* demands it; if the honest answer is "none, but…", the change is out of scope — surface it, don't make it.
+- **Scope is task-intent, not the literal words.** The obvious sub-steps needed to accomplish the goal (the test for the function you just wrote, the import you must add, wiring the new code in) are in scope. Drive-by refactors, renames, reformatting, and "while I'm here" cleanups are not.
+- **Surface, don't fix.** Spot a bug, a smell, or broken code outside the task? Leave it untouched — finding a problem is not permission to fix it. But you *must* tell the user: call it out explicitly in the summary you give them before you finish, plainly enough that they can act on it. Never bury an anomaly in a diff or PR body they might not read, and never stay silent about it.
+- **Required changes are allowed, but never silent.** When the task genuinely can't land without touching adjacent code (a changed signature breaks its callers), make the change and call it out explicitly — list what you touched and why the task forced it.
+- **Preserve existing behavior.** Inside the code you *do* touch, change only what the task needs. Don't delete, rewrite, or "simplify" working code you weren't asked to change, and never drop existing functionality as a side effect of adding something. Rewrite freely when the task calls for it — but if you don't understand a piece of code, that's a reason to leave it alone, not to remove it.
+
 ---
 
 ## The Review Gate
@@ -131,5 +139,6 @@ Before calling *anything* done — your own work or someone else's — answer th
 8. Is there a secret, key, or token in this diff? Remove it now.
 9. Did it follow the existing patterns of this codebase, or invent a second dialect for the same job?
 10. Is the behavior that matters covered by a deterministic test?
+11. Did every change trace to the assigned task? Anything you touched that the task didn't require — or any working behavior you removed — is a scope violation: revert it or surface it.
 
 > The full standard, including all 13 domain reference files, lives under `skills/engineering-standards/`. Note: when read outside the bundled skill, the reference links above are relative to the repository root (`skills/engineering-standards/reference/…`); inside the skill they resolve as `reference/…`.
