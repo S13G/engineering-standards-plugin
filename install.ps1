@@ -55,7 +55,7 @@ try {
         throw "Failed to locate extracted standards folder."
     }
 
-    $Items = "AGENTS.md", "CLAUDE.md", "GEMINI.md", ".cursorrules", "skills"
+    $Items = "AGENTS.md", "CLAUDE.md", "GEMINI.md", ".cursorrules", "skills", ".cursor", ".github"
 
     foreach ($Item in $Items) {
         $Src = Join-Path $RepoFolder.FullName $Item

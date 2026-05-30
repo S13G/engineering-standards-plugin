@@ -13,7 +13,9 @@
     "GEMINI.md",
     ".cursorrules",
     "skills",
-    "bin"
+    "bin",
+    ".cursor",
+    ".github"
   ],
   "author": "S13G",
   "license": "MIT",

@@ -5,7 +5,7 @@ const path = require('path');
 const os = require('os');
 
 const packageRoot = path.join(__dirname, '..');
-const filesToCopy = ['AGENTS.md', 'CLAUDE.md', 'GEMINI.md', '.cursorrules', 'skills'];
+const filesToCopy = ['AGENTS.md', 'CLAUDE.md', 'GEMINI.md', '.cursorrules', 'skills', '.cursor', '.github'];
 
 function getHelp() {
   return `

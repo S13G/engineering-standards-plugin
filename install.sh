@@ -78,7 +78,7 @@ if [ -z "$EXTRACTED_DIR" ]; then
 fi
 
 # Files and directories to install
-ITEMS="AGENTS.md CLAUDE.md GEMINI.md .cursorrules skills"
+ITEMS="AGENTS.md CLAUDE.md GEMINI.md .cursorrules skills .cursor .github"
 
 copy_item() {
   src="$1"
