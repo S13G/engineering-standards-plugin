@@ -1,14 +1,16 @@
-# Engineering Standards — a Claude Code plugin
+# Engineering Standards
 
-A thorough, cross-domain software engineering standard for [Claude Code](https://claude.com/claude-code), packaged as a single installable skill.
+**A thorough, cross-domain software engineering standard for AI coding agents.** Works with Claude Code, Codex, Cursor, Gemini CLI, Aider, and any agent that reads an instructions file.
 
-It encodes the canon of software engineering — SOLID, Clean Code, *Designing Data-Intensive Applications*, *A Philosophy of Software Design*, *97 Things Every Software Architect Should Know*, *Release It!*, 12-Factor, OWASP, CAP, and battle-tested practice — as **enforceable, language-agnostic rules** Claude applies silently to everything it writes, reviews, and designs.
+It encodes the canon of software engineering — SOLID, Clean Code, *Designing Data-Intensive Applications*, *A Philosophy of Software Design*, *97 Things Every Software Architect Should Know*, *Release It!*, 12-Factor, OWASP, CAP, and battle-tested practice — as **enforceable, language-agnostic rules** the agent applies silently to everything it writes, reviews, and designs.
+
+One lean always-on core (the universal laws) plus on-demand deep-dives for each domain — so it stays lightweight no matter how large the standard grows.
+
+---
 
 ## What it covers
 
-A lean always-on core (the universal laws) plus on-demand deep-dives for each domain:
-
-| Domain | Reference |
+| Domain | Reference file |
 |---|---|
 | System design, tradeoffs, quality attributes, DDD, ADRs, technical debt | `architecture` |
 | OOP / FP / procedural, immutability, pure functions, functional core | `paradigms` |
@@ -24,41 +26,87 @@ A lean always-on core (the universal laws) plus on-demand deep-dives for each do
 | Test strategy, determinism, test doubles, property/load/chaos testing | `testing` |
 | Commits, branching, pull requests, code review, continuous integration | `git-craft` |
 
-## How it loads (and why it won't eat your context window)
+The full standard lives in [`AGENTS.md`](AGENTS.md) (the universal laws, agent-neutral) plus the 13 domain files under [`skills/engineering-standards/reference/`](skills/engineering-standards/reference/).
 
-The skill uses **progressive disclosure** — it does *not* dump everything into context:
-
-- **Always present:** only the skill's one-line description (~150 tokens).
-- **When a coding task triggers it:** the core `SKILL.md` loads (~3k tokens).
-- **Only when relevant:** Claude reads a single domain reference file (~1.5–3k tokens each).
-
-A typical backend task costs roughly **5–6k tokens total** — a few percent of a 200k window. The per-domain split means writing a database migration never loads the mobile or kernel docs.
+---
 
 ## Install
 
+Pick your agent. Every path uses the **same content** — [`AGENTS.md`](AGENTS.md) and the `reference/` files; only the entry point differs per agent.
+
+The simplest universal method is to **copy this repo's files into your project** (or vendor the whole repo), so the agent finds its instructions file at the root:
+
+```bash
+# from your project root
+git clone https://github.com/S13G/engineering-standards-plugin
+cp -R engineering-standards-plugin/AGENTS.md \
+      engineering-standards-plugin/CLAUDE.md \
+      engineering-standards-plugin/GEMINI.md \
+      engineering-standards-plugin/.cursorrules \
+      engineering-standards-plugin/skills .
 ```
-# In Claude Code:
+
+Then per agent:
+
+| Agent | Entry point | Setup |
+|---|---|---|
+| **Codex** | `AGENTS.md` | Read automatically. Just have `AGENTS.md` + `skills/` in the project. |
+| **Cursor** | `.cursorrules` | Read automatically once present in the project root. |
+| **Gemini CLI** | `GEMINI.md` | Read automatically; it points to `AGENTS.md`. |
+| **Aider** | `AGENTS.md` | Run with `aider --read AGENTS.md`. |
+| **Claude Code** | plugin *(recommended)* or `CLAUDE.md` | See below — the plugin adds automatic, progressive loading. |
+| **Any other** | `AGENTS.md` | Include it in the agent's context and ensure it can open `reference/*.md` on demand. |
+
+> Each root file (`CLAUDE.md`, `GEMINI.md`, `.cursorrules`) is a thin pointer to the single source of truth, `AGENTS.md` — edit `AGENTS.md` and every agent stays in sync.
+
+### Claude Code — install as a plugin (best experience)
+
+Claude Code can load this as a true skill with **progressive disclosure** (it triggers itself on coding tasks and pulls in only the relevant domain file — no manual file copying):
+
+```
 /plugin marketplace add S13G/engineering-standards-plugin
 /plugin install engineering-standards@engineering-standards-marketplace
 ```
 
-> Replace `S13G` with your GitHub username if the repo lives elsewhere.
+To make it an always-on default across every workspace, also reference it from your global `~/.claude/CLAUDE.md`.
 
-Once installed, it triggers automatically on code generation, review, refactoring, and architecture work — no command needed. To make it an always-on default across every workspace, also reference it from your `~/.claude/CLAUDE.md`.
+---
+
+## How it loads (and why it won't eat your context window)
+
+The standard is built for **progressive disclosure** — it does *not* dump everything into context at once:
+
+- **Always present:** just the entry pointer / skill description (~150 tokens).
+- **When a coding task is in play:** the core universal laws load (~3k tokens).
+- **Only when relevant:** the agent opens a *single* domain reference file (~1.5–3k tokens each).
+
+A typical backend task costs roughly **5–6k tokens total** — a few percent of a 200k context window. The per-domain split means writing a database migration never loads the mobile or kernel docs.
+
+On Claude Code this happens automatically via the skill engine. On other agents, the agent reads `AGENTS.md` (the laws) up front and opens a `reference/<domain>.md` file when the task calls for it — same lightweight, load-on-demand behavior, as long as the agent can read files.
+
+---
 
 ## Structure
 
 ```
 engineering-standards-plugin/
+├── AGENTS.md                 # source of truth: universal laws + review gate (agent-neutral)
+├── CLAUDE.md                 # pointer → AGENTS.md (Claude Code fallback)
+├── GEMINI.md                 # pointer → AGENTS.md (Gemini CLI)
+├── .cursorrules              # pointer → AGENTS.md (Cursor)
 ├── .claude-plugin/
-│   ├── plugin.json          # plugin manifest
-│   └── marketplace.json     # marketplace entry
+│   ├── plugin.json           # Claude Code plugin manifest
+│   └── marketplace.json      # Claude Code marketplace entry
 └── skills/
     └── engineering-standards/
-        ├── SKILL.md         # always-on core: the universal laws + routing
-        └── reference/       # 13 on-demand per-domain deep-dives
+        ├── SKILL.md          # Claude Code skill core (laws + auto-routing)
+        └── reference/        # 13 on-demand per-domain deep-dives (shared by all agents)
 ```
+
+`AGENTS.md` and `skills/engineering-standards/SKILL.md` carry the same universal laws; both route to the same `reference/` files. Keeping the laws in two entry files (one agent-neutral, one Claude-skill) is the small, deliberate cost of supporting every agent — the 13 domain references are shared, never duplicated.
+
+---
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). Contributions and new domain references welcome.
