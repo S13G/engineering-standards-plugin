@@ -23,6 +23,7 @@ Apply the **Universal Laws** below to everything, always. For depth on the domai
 | Input boundaries, authz, crypto, secrets, threat modeling, OWASP, supply chain | `skills/engineering-standards/reference/security.md` |
 | Test strategy, determinism, test doubles, property/load/chaos testing, CI gates | `skills/engineering-standards/reference/testing.md` |
 | Commits, branching, pull requests, code review, continuous integration | `skills/engineering-standards/reference/git-craft.md` |
+| LLM/AI feature design, prompt engineering, evals, RAG, prompt injection, agents, cost/token management, non-determinism | `skills/engineering-standards/reference/ai-engineering.md` |
 
 ---
 

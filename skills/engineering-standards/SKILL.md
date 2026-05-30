@@ -34,6 +34,7 @@ This top file holds the universal laws that apply to *every* domain. For depth, 
 | Input boundaries, authz, crypto, secrets, threat modeling, OWASP, supply chain and others | `reference/security.md` |
 | Test strategy, determinism, test doubles, property/load/chaos testing, CI gates and others | `reference/testing.md` |
 | Commits, branching, pull requests, code review, continuous integration and others | `reference/git-craft.md` |
+| LLM/AI feature design, prompt engineering, evals, RAG, prompt injection, agents, cost/token management, non-determinism and others | `reference/ai-engineering.md` |
 
 3. Apply silently. Produce the code, the migration, the review — not a lecture about the rules.
 
