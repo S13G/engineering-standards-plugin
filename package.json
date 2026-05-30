@@ -1,6 +1,6 @@
 {
   "name": "engineering-standards-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automated cross-domain software engineering standards installer for AI coding agents",
   "main": "bin/cli.js",
   "bin": {

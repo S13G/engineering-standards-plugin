@@ -38,11 +38,11 @@ function copyRecursive(src, dest, force = false) {
     }
   } else {
     if (exists && !force) {
-      console.log(`\x1b[33m⚠ Skipped (already exists):\x1b[0m ${path.basename(dest)}`);
+      console.log(`  \x1b[33m⚠ Skipped (already exists):\x1b[0m ${path.basename(dest)}`);
       return;
     }
     fs.copyFileSync(src, dest);
-    console.log(`\x1b[32m✔ Copied:\x1b[0m ${path.basename(dest)}`);
+    console.log(`  \x1b[32m✔ Installed:\x1b[0m ${path.basename(dest)}`);
   }
 }
 
@@ -61,8 +61,14 @@ function run() {
     ? path.join(os.homedir(), '.engineering-standards')
     : process.cwd();
 
-  console.log(`\n\x1b[1mInstalling Engineering Standards (${isGlobal ? 'Global' : 'Local'} Mode)...\x1b[22m`);
-  console.log(`Target directory: \x1b[36m${targetDir}\x1b[0m\n`);
+  // Print gorgeous banner
+  console.log(`\n\x1b[36m\x1b[1m┌──────────────────────────────────────────────────┐`);
+  console.log(`│         ENGINEERING STANDARDS INSTALLER          │`);
+  console.log(`│    Optimizing for the next human to read code    │`);
+  console.log(`└──────────────────────────────────────────────────┘\x1b[22m\x1b[0m`);
+
+  console.log(`  Mode:             \x1b[1m${isGlobal ? 'Global 🌍' : 'Local (Project) 📁'}\x1b[22m`);
+  console.log(`  Target Directory: \x1b[35m${targetDir}\x1b[0m\n`);
 
   if (isGlobal && !fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir, { recursive: true });
@@ -75,7 +81,7 @@ function run() {
     if (fs.existsSync(srcPath)) {
       copyRecursive(srcPath, destPath, force);
     } else {
-      console.warn(`\x1b[31m✗ Source file missing from package:\x1b[0m ${item}`);
+      console.warn(`  \x1b[31m✗ Source file missing from package:\x1b[0m ${item}`);
     }
   }
 
@@ -85,14 +91,14 @@ function run() {
 
   console.log('\n\x1b[32m\x1b[1m★ Installation completed successfully!\x1b[22m\x1b[0m');
   if (!isGlobal) {
-    console.log('Standards are now local to this project and will be read automatically by your AI agents.\n');
+    console.log('  Standards are now local to this project and will be read automatically by your AI agents.\n');
   } else {
-    console.log('Standards are now globally installed. Make sure to configure your AI agents to use them.\n');
+    console.log('  Standards are now globally installed. Your AI agents have been configured to use them.\n');
   }
 }
 
 function setupGlobalIntegrations(globalDir) {
-  console.log('\n\x1b[1mSetting up global AI agent references...\x1b[22m');
+  console.log('\n  \x1b[1mSetting up global AI agent references...\x1b[22m');
   
   const home = os.homedir();
 
@@ -112,7 +118,7 @@ function setupGlobalIntegrations(globalDir) {
     if (fs.existsSync(claudeFile)) {
       const content = fs.readFileSync(claudeFile, 'utf8');
       if (content.includes('engineering-standards')) {
-        console.log('\x1b[33m⚠ Global Claude Code rules already contain a reference to engineering-standards.\x1b[0m');
+        console.log('  \x1b[33m⚠ Global Claude Code rules already contain a reference to engineering-standards.\x1b[0m');
         shouldWriteClaude = false;
       }
     }
@@ -120,10 +126,10 @@ function setupGlobalIntegrations(globalDir) {
     if (shouldWriteClaude) {
       const referenceText = `\n# Engineering Standards\n\nThis workspace uses the global engineering standards plugin.\nTo load domain references, refer to rules inside \`${globalDir}\`.\n\n@${path.join(globalDir, 'AGENTS.md')}\n`;
       fs.appendFileSync(claudeFile, referenceText, 'utf8');
-      console.log(`\x1b[32m✔ Added reference to global CLAUDE.md at:\x1b[0m ${claudeFile}`);
+      console.log(`  \x1b[32m✔ Added reference to global CLAUDE.md at:\x1b[0m ${claudeFile}`);
     }
   } catch (err) {
-    console.log(`\x1b[31m✗ Failed to auto-configure Claude Code:\x1b[0m ${err.message}`);
+    console.log(`  \x1b[31m✗ Failed to auto-configure Claude Code:\x1b[0m ${err.message}`);
   }
 
   // 2. Setup Gemini CLI global pointer
@@ -141,7 +147,7 @@ function setupGlobalIntegrations(globalDir) {
     if (fs.existsSync(geminiFile)) {
       const content = fs.readFileSync(geminiFile, 'utf8');
       if (content.includes('engineering-standards')) {
-        console.log('\x1b[33m⚠ Global Gemini CLI rules already contain a reference to engineering-standards.\x1b[0m');
+        console.log('  \x1b[33m⚠ Global Gemini CLI rules already contain a reference to engineering-standards.\x1b[0m');
         shouldWriteGemini = false;
       }
     }
@@ -149,10 +155,10 @@ function setupGlobalIntegrations(globalDir) {
     if (shouldWriteGemini) {
       const referenceText = `\n# Engineering Standards\n\nThis workspace uses the global engineering standards plugin.\nTo load domain references, refer to rules inside \`${globalDir}\`.\n\n@${path.join(globalDir, 'AGENTS.md')}\n`;
       fs.appendFileSync(geminiFile, referenceText, 'utf8');
-      console.log(`\x1b[32m✔ Added reference to global GEMINI.md at:\x1b[0m ${geminiFile}`);
+      console.log(`  \x1b[32m✔ Added reference to global GEMINI.md at:\x1b[0m ${geminiFile}`);
     }
   } catch (err) {
-    console.log(`\x1b[31m✗ Failed to auto-configure Gemini CLI:\x1b[0m ${err.message}`);
+    console.log(`  \x1b[31m✗ Failed to auto-configure Gemini CLI:\x1b[0m ${err.message}`);
   }
 }
 
