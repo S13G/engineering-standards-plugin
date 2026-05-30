@@ -1,0 +1,38 @@
+{
+  "name": "engineering-standards-plugin",
+  "version": "1.0.0",
+  "description": "Automated cross-domain software engineering standards installer for AI coding agents",
+  "main": "bin/cli.js",
+  "bin": {
+    "engineering-standards": "./bin/cli.js",
+    "engineering-standards-plugin": "./bin/cli.js"
+  },
+  "files": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    ".cursorrules",
+    "skills",
+    "bin"
+  ],
+  "author": "S13G",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/S13G/engineering-standards-plugin.git"
+  },
+  "keywords": [
+    "engineering",
+    "standards",
+    "ai",
+    "cursor",
+    "claude",
+    "gemini",
+    "rules",
+    "best-practices"
+  ],
+  "bugs": {
+    "url": "https://github.com/S13G/engineering-standards-plugin/issues"
+  },
+  "homepage": "https://github.com/S13G/engineering-standards-plugin#readme"
+}

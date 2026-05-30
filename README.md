@@ -32,21 +32,59 @@ The full standard lives in [`AGENTS.md`](AGENTS.md) (the universal laws, agent-n
 
 ## Install
 
-Pick your agent. Every path uses the **same content** — [`AGENTS.md`](AGENTS.md) and the `reference/` files; only the entry point differs per agent.
+Choose your installation method below. You can install the engineering standards **locally** into a specific project root, or **globally** to automatically configure all your AI agents without cloning the repository.
 
-The simplest universal method is to **copy this repo's files into your project** (or vendor the whole repo), so the agent finds its instructions file at the root:
+### 🚀 A. Unix Quick Installer (macOS & Linux)
+Run the automated shell installer via `curl`:
 
 ```bash
-# from your project root
-git clone https://github.com/S13G/engineering-standards-plugin
-cp -R engineering-standards-plugin/AGENTS.md \
-      engineering-standards-plugin/CLAUDE.md \
-      engineering-standards-plugin/GEMINI.md \
-      engineering-standards-plugin/.cursorrules \
-      engineering-standards-plugin/skills .
+# Local (Installs standards to the current directory)
+curl -fsSL https://raw.githubusercontent.com/S13G/engineering-standards-plugin/main/install.sh | sh
+
+# Global (Installs to ~/.engineering-standards and configures global profiles)
+curl -fsSL https://raw.githubusercontent.com/S13G/engineering-standards-plugin/main/install.sh | sh -s -- --global
 ```
 
-Then per agent:
+### 💻 B. Windows PowerShell Installer (Windows)
+Run the automated PowerShell installer via `irm` (Invoke-RestMethod):
+
+```powershell
+# Local (Installs standards to the current directory)
+irm https://raw.githubusercontent.com/S13G/engineering-standards-plugin/main/install.ps1 | iex
+
+# Global (Installs to ~/.engineering-standards and configures global profiles)
+irm https://raw.githubusercontent.com/S13G/engineering-standards-plugin/main/install.ps1 | iex -Arguments "-Global"
+```
+
+### 📦 C. Node.js & npm/npx Installer (Cross-platform)
+You can run the installer instantly with `npx`, or install it globally with `npm`:
+
+#### Option 1: Run instantly using `npx`
+```bash
+# Local (Installs standards to the current directory)
+npx engineering-standards-plugin
+
+# Global (Installs to ~/.engineering-standards and configures global profiles)
+npx engineering-standards-plugin --global
+```
+
+#### Option 2: Install globally using `npm`
+```bash
+# Install globally on your system
+npm install -g engineering-standards-plugin
+
+# Run the installer in any project directory
+engineering-standards
+
+# Run globally to configure system-wide agent profiles
+engineering-standards --global
+```
+
+---
+
+### Agent Compatibility Matrix
+
+Once installed, standard files map directly to agent inputs:
 
 | Agent | Entry point | Setup |
 |---|---|---|
@@ -58,6 +96,7 @@ Then per agent:
 | **Any other** | `AGENTS.md` | Include it in the agent's context and ensure it can open `reference/*.md` on demand. |
 
 > Each root file (`CLAUDE.md`, `GEMINI.md`, `.cursorrules`) is a thin pointer to the single source of truth, `AGENTS.md` — edit `AGENTS.md` and every agent stays in sync.
+
 
 ### Claude Code — install as a plugin (best experience)
 
