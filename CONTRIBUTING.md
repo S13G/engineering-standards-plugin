@@ -9,10 +9,10 @@ AGENTS.md                              # source of truth: the universal laws + r
 CLAUDE.md / GEMINI.md / .cursorrules   # thin per-agent pointers → AGENTS.md (keep them thin)
 skills/engineering-standards/
 ├── SKILL.md                           # Claude Code skill core: same laws + the routing table
-└── reference/<domain>.md              # 13 on-demand per-domain deep-dives (shared by every agent)
+└── reference/<domain>.md              # 14 on-demand per-domain deep-dives (shared by every agent)
 ```
 
-Two things carry the **universal laws**: `AGENTS.md` (for all agents) and `skills/engineering-standards/SKILL.md` (the Claude Code skill). They must stay in sync. The 13 `reference/` files are shared — never duplicated per agent.
+Two things carry the **universal laws**: `AGENTS.md` (for all agents) and `skills/engineering-standards/SKILL.md` (the Claude Code skill). They must stay in sync. The 14 `reference/` files are shared — never duplicated per agent.
 
 ## The two rules that keep this consistent
 
