@@ -142,4 +142,4 @@ Before calling *anything* done — your own work or someone else's — answer th
 10. Is the behavior that matters covered by a deterministic test?
 11. Did every change trace to the assigned task? Anything you touched that the task didn't require — or any working behavior you removed — is a scope violation: revert it or surface it.
 
-> The full standard, including all 13 domain reference files, lives under `skills/engineering-standards/`. Note: when read outside the bundled skill, the reference links above are relative to the repository root (`skills/engineering-standards/reference/…`); inside the skill they resolve as `reference/…`.
+> The full standard, including all 14 domain reference files, lives under `skills/engineering-standards/`. Note: when read outside the bundled skill, the reference links above are relative to the repository root (`skills/engineering-standards/reference/…`); inside the skill they resolve as `reference/…`.
